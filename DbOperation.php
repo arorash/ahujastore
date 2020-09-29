@@ -15,8 +15,8 @@
             return $stmt->num_rows > 0;
         }
 
-        public function getItemsId(){
-            $stmt = $this->con->prepare("select id from products order by id;");
+        public function getItems(){
+            $stmt = $this->con->prepare("select * from products order by id;");
             $stmt->execute();
             return $stmt->get_result()->fetch_all();
         }
