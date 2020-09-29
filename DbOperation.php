@@ -12,6 +12,7 @@
             $stmt = $this->con->prepare("select id from admin_table where username=? and password=?;");
             $stmt->bind_param("ss",$username,$password);
             $stmt->execute();
+            $stmt->store_result();
             return $stmt->num_rows > 0;
         }
 
