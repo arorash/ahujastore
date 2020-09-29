@@ -13,4 +13,6 @@
                 array_push($response,$products[$i]['id']);
             }
 
-    echo $response;
+    for($i=0;$i<count($products);$i++){
+        echo $response[$i];
+    }
