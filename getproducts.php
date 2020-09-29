@@ -8,10 +8,12 @@
             for($i=0;$i<count($products);$i++){
                 array_push($response,$products[$i]);
             }
-            echo json_encode($response);
+            
         }
 
     }
     else{
-        echo "Invalid Request";
+        $response['error']=true;
+        $response['message']="Invalid Request";
     }
+    echo json_encode($response);
