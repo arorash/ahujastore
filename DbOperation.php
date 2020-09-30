@@ -21,4 +21,12 @@
             $stmt->execute();
             return $stmt->get_result()->fetch_all();
         }
+        public function insertPro($product_name,$price,$quantity,$category){
+            $stmt = $this->con->prepare("insert into products(product_name,price,quantity,category) values(?,?,?,?);");
+            $stmt->bind_param("ssss",$product_name,$price,$quantity,$category);
+            if($stmt->execute()){
+                return 1;
+            }
+            return 0;
+        }
     }
