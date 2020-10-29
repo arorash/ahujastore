@@ -31,13 +31,20 @@
         }
         
         public function updatePro($product_name,$price,$quantity){
-            $stmt = $this->con->prepare("update products set quantity=? where product_name=? and price=?;");
-            $stmt->bind_param("sss",$quantity,$product_name,$quantity);
+            $pname = explode(",",$product_name);
+            $pprice = explode(",",$price);
+            $quan = explode(",",$quantity);
 
-            if($stmt->execute()){
-                return 1;
+            $j=0;
+            for($i=0;$i<sizeof($pname);$i++){
+                $stmt = $this->con->prepare("update products set quantity=? where product_name=? and price=?;");
+                $stmt->bind_param("sss",$quan[$i],$pname[$i],$pprice[$i]);
+
+                if($stmt->execute()){
+                    $j++;
+                }
             }
-            return 0;
+            return $j;
 
         }
     }
