@@ -17,19 +17,20 @@
         }
 
         public function getItems(){
-            $stmt = $this->con->prepare("select * from products order by id;");
+            $stmt = $this->con->prepare("select * from products order by product_name;");
             $stmt->execute();
             return $stmt->get_result()->fetch_all();
         }
-        public function insertPro($product_name,$price,$quantity,$category){
-            $stmt = $this->con->prepare("insert into products(product_name,price,quantity,category) values(?,?,?,?);");
-            $stmt->bind_param("ssss",$product_name,$price,$quantity,$category);
+
+        public function insertPro($product_name,$price,$quantity){
+            $stmt = $this->con->prepare("insert into products(product_name,price,quantity) values(?,?,?);");
+            $stmt->bind_param("sss",$product_name,$price,$quantity);
             if($stmt->execute()){
                 return 1;
             }
             return 0;
         }
-        
+
         public function updatePro($product_name,$price,$quantity){
             $pname = explode(",",$product_name);
             $pprice = explode(",",$price);
