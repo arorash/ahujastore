@@ -23,8 +23,8 @@
         }
 
         public function insertPro($product_name,$price,$quantity){
-            $stmt = $this->con->prepare("insert into products(product_name,price,quantity) values(?,?,?);");
-            $stmt->bind_param("sss",$product_name,$price,$quantity);
+            $stmt = $this->con->prepare("insert into products(product_name,price,quantity,category) values(?,?,?,?);");
+            $stmt->bind_param("ssss",$product_name,$price,$quantity,"");
             if($stmt->execute()){
                 return 1;
             }
