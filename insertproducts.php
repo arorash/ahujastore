@@ -2,9 +2,9 @@
     require_once dirname(__FILE__).'/DbOperation.php';
     $response = array();
     if($_SERVER['REQUEST_METHOD']=='POST'){
-        if(isset($_POST['product_name']) and isset($_POST['price']) and isset($_POST['quantity'])){
+        if(isset($_POST['product_name']) and isset($_POST['price']) and isset($_POST['quantity']) and isset($_POST['category'])){
             $db = new DbOperation();
-            if($db->insertPro($_POST['product_name'],$_POST['price'],$_POST['quantity'])){
+            if($db->insertPro($_POST['product_name'],$_POST['price'],$_POST['quantity'],$_POST['category'])){
                 $response['error']=false;
                 $response['message']="Added Successfully";
             }
