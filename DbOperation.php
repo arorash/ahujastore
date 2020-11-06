@@ -48,4 +48,20 @@
             return $j;
 
         }
+        public function insertModify($product_name,$price,$quantity,$modifyD){
+
+            $stmt = $this->con->prepare("insert into modify_records(product_name,product_price,quantity_change,changing_date) values(?,?,?,?);");
+            $stmt->bind_param("ssss",$product_name,$price,$quantity,$modifyD);
+            if($stmt->execute()){
+                return 1;
+            }
+            return 0;
+        }
+
+        public function getModifyItems($modify_date){
+            $stmt = $this->con->prepare("select * from modify_records where changing_date=?;");
+            $stmt->bind_param("s",$modify_date);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all();
+        }
     }
